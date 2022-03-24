@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search } from '../Search';
+import { CardList } from './CardList';
 
 import style from './Main.module.scss';
 
@@ -464,6 +465,7 @@ export class Main extends React.Component {
     return (
       <main className={style.main}>
         <Search />
+        <CardList />
       </main>
     );
   }

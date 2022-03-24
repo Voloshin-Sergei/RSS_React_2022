@@ -1,9 +1,16 @@
 import React from 'react';
 import { Header } from './components/Header';
+import { Main } from './components/Main';
+
 import './App.module.scss';
 
-function App() {
-  return <Header />;
+export class App extends React.Component {
+  render() {
+    return (
+      <>
+        <Header />
+        <Main />
+      </>
+    );
+  }
 }
-
-export default App;

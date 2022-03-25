@@ -465,7 +465,7 @@ export class Main extends React.Component {
     return (
       <main className={style.main}>
         <Search />
-        <CardList />
+        <CardList persons={mock} />
       </main>
     );
   }

@@ -3,8 +3,6 @@
 
 .header {
   &__container {
-    max-width: 120rem;
-    margin: 0 auto;
     padding: 2rem;
   }
 
@@ -35,13 +33,16 @@
 
   &__item {
     margin-right: 3rem;
-    @include font(3rem, 500, $text-color-main);
-    text-transform: uppercase;
-    transition: all 0.3s ease;
 
     &:last-child {
       margin-right: 0;
     }
+  }
+
+  &__link {
+    @include font(3rem, 500, $text-color-main);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
 
     &:hover {
       color: $secondary-color;

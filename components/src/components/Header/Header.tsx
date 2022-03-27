@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../img/logo.png';
 import bg from '../../img/header_bg.png';
 
@@ -10,13 +11,21 @@ export class Header extends React.Component {
       <header className={style.header}>
         <div className={style.header__container}>
           <div className={style.header__wrapper}>
-            <a href="/">
+            <Link to="/">
               <img className={style.header__logo} src={logo} />
-            </a>
+            </Link>
             <nav className={style.nav}>
               <ul className={style.nav__list}>
-                <li className={style.nav__item}>Home</li>
-                <li className={style.nav__item}>About us</li>
+                <li className={style.nav__item}>
+                  <Link className={style.nav__link} to="/">
+                    Home
+                  </Link>
+                </li>
+                <li className={style.nav__item}>
+                  <Link className={style.nav__link} to="/about">
+                    About us
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>

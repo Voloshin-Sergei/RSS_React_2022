@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Footer } from './Footer';
 
 describe('Footer', () => {
-  it('Search snapshot', () => {
+  it('Footer snapshot', () => {
     const footerComponent = render(<Footer />);
     expect(footerComponent).toMatchSnapshot();
   });

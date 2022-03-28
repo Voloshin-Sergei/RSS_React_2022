@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer Search snapshot 1`] = `
+exports[`Footer Footer snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

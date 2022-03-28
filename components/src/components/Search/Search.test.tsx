@@ -3,6 +3,16 @@ import userEvent from '@testing-library/user-event';
 import { Search } from './Search';
 
 describe('Search', () => {
+  beforeEach(() => {
+    Object.defineProperty(window, 'localStorage', {
+      value: {
+        getItem: jest.fn(() => null),
+        setItem: jest.fn(() => null),
+      },
+      writable: true,
+    });
+  });
+
   it('Search snapshot', () => {
     const searchComponent = render(<Search />);
     expect(searchComponent).toMatchSnapshot();
@@ -32,5 +42,10 @@ describe('Search', () => {
   it('render button element', () => {
     render(<Search />);
     expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+
+  it('Should call localStorage getItem on render', () => {
+    render(<Search />);
+    expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,0 +1,39 @@
+@import '../../scss/_variables';
+@import '../../scss/_mixins';
+
+.search {
+  padding: 2rem 4rem;
+}
+
+.form {
+  display: flex;
+  padding-right: 10%;
+  &__input {
+    width: 80%;
+    padding: 0.5rem 3rem;
+    background: $primary-color;
+    border-radius: 5rem;
+    border: 0.2rem solid $primary-color;
+    outline: 0;
+    @include font(2rem, 500, $text-color-main);
+    margin-right: 2rem;
+    box-shadow: $main-shadow;
+
+    &:focus {
+      border: 0.2rem solid $secondary-color;
+    }
+  }
+
+  &__btn {
+    background: $secondary-color;
+    @include font(2rem, 500, $text-color-main);
+    padding: 0.5rem 2rem;
+    border-radius: 5rem;
+    transition: all 0.2s ease-in;
+    box-shadow: $main-shadow;
+
+    &:hover {
+      background: darken($color: $secondary-color, $amount: 10);
+    }
+  }
+}

@@ -26,6 +26,11 @@ export class Header extends React.Component {
                     About us
                   </Link>
                 </li>
+                <li className={style.nav__item}>
+                  <Link className={style.nav__link} to="/users">
+                    Users
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>

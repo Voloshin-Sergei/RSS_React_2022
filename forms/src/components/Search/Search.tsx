@@ -15,11 +15,16 @@ export class Search extends React.Component {
 
   UNSAFE_componentWillMount() {
     const searchValue = localStorage.getItem('searchValue');
-    this.setState({ searchValue: searchValue });
+
+    if (searchValue) {
+      this.setState({ searchValue: searchValue });
+    }
   }
 
   componentWillUnmount() {
-    localStorage.setItem('searchValue', this.state.searchValue);
+    if (this.state.searchValue) {
+      localStorage.setItem('searchValue', this.state.searchValue);
+    }
   }
 
   render() {

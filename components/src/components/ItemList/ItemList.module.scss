@@ -1,0 +1,19 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.itemList {
+  margin-bottom: 3rem;
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  &__title {
+    @include font(3.6rem, 700, $text-color-main);
+    margin: 0 0 2rem 4rem;
+  }
+}

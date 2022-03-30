@@ -1,0 +1,44 @@
+@import './variables';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: -webkit-linear-gradient(180deg, rgb(25, 34, 40) 31%, rgb(41, 82, 105)) no-repeat;
+  background: -moz-linear-gradient(180deg, rgb(25, 34, 40) 31%, rgb(41, 82, 105)) no-repeat;
+  background: linear-gradient(180deg, rgb(25, 34, 40) 31%, rgb(41, 82, 105)) no-repeat;
+  background-color: $primary-color-dark;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}

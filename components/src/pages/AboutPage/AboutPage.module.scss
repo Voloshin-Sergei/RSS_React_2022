@@ -1,0 +1,21 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.aboutPage {
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+
+  &__title {
+    @include font(3.6rem, 700, $text-color-main);
+    margin: 0 0 2rem 4rem;
+  }
+
+  &__text {
+    @include font(2.4rem, 400, $text-color-main);
+    margin: 2rem 0;
+
+    @media (max-width: 400px) {
+      @include font(1.8rem, 300, $text-color-main);
+    }
+  }
+}

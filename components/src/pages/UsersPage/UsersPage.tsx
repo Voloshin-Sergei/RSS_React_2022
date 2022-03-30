@@ -30,7 +30,7 @@ export class UsersPage extends React.Component {
           </div>
 
           <div className={style.form__group}>
-            <p className={style.form__text}>Country</p>
+            <p className={style.form__text}>Country:</p>
             <select className={style.form__input}>
               <option disabled selected>
                 Select your country

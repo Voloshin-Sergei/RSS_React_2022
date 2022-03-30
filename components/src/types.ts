@@ -18,3 +18,13 @@ export interface Person {
   url: string;
   created: string;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  surname: string;
+  birthday: string;
+  country: string;
+  gender: string;
+  avatar: string;
+}

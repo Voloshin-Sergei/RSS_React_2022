@@ -1,11 +1,13 @@
 import React from 'react';
 import { PersonCard } from './PersonCard';
-import { Person } from '../../types';
+import { UserCard } from './UserCard';
+import { Person, User } from '../../types';
 
 import style from './ItemList.module.scss';
 
 interface ItemListProps {
   persons?: Person[];
+  users?: User[];
 }
 
 export class ItemList extends React.Component<ItemListProps> {
@@ -20,6 +22,9 @@ export class ItemList extends React.Component<ItemListProps> {
         <div className={style.itemList__wrapper}>
           {this.props.persons?.map((item) => (
             <PersonCard key={item.id} person={item} />
+          ))}
+          {this.props.users?.map((item) => (
+            <UserCard key={item.id} user={item} />
           ))}
         </div>
       </section>

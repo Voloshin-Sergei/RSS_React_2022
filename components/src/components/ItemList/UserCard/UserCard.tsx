@@ -15,7 +15,7 @@ export class UserCard extends React.Component<UserCardProps> {
     const { avatar, name, surname, gender, birthday, country } = this.props.user;
     return (
       <div className={style.user}>
-        <img className={style.user__img} src={`${avatar}`} />
+        <img className={style.user__img} src={URL.createObjectURL(avatar)} />
         <div className={style.user__info}>
           <h2 className={style.user__name}>
             {name} {surname}

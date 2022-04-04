@@ -20,11 +20,11 @@ export interface Person {
 }
 
 export interface User {
-  id: string;
+  id: number;
   name: string;
   surname: string;
   birthday: string;
   country: string;
   gender: string;
-  avatar: string;
+  avatar: File;
 }

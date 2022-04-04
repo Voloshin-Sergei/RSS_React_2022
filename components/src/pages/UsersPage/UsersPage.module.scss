@@ -28,6 +28,10 @@
   &__text {
     @include font(1.6rem, 400, $text-color-main);
     margin-bottom: 0.5rem;
+
+    &_error {
+      color: red;
+    }
   }
 
   &__group {
@@ -81,6 +85,11 @@
     box-shadow: $main-shadow;
 
     &:hover {
+      background: darken($color: $secondary-color, $amount: 10);
+    }
+
+    &:disabled {
+      cursor: default;
       background: darken($color: $secondary-color, $amount: 10);
     }
   }
@@ -137,6 +146,7 @@
 }
 
 .check {
+  width: 8rem;
   position: relative;
   padding-left: 1.2em;
   cursor: pointer;

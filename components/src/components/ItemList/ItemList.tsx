@@ -18,7 +18,8 @@ export class ItemList extends React.Component<ItemListProps> {
   render() {
     return (
       <section className={style.itemList}>
-        <h1 className={style.itemList__title}>Persons</h1>
+        <h1 className={style.itemList__title}>{this.props.persons ? 'Persons' : 'Users'}</h1>
+
         <div className={style.itemList__wrapper}>
           {this.props.persons?.map((item) => (
             <PersonCard key={item.id} person={item} />

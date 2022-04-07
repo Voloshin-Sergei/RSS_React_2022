@@ -2,17 +2,20 @@ import React from 'react';
 import { ItemList } from '../../components/ItemList';
 import { User } from '../../types';
 import style from './UsersPage.module.scss';
-
 interface UsersPageState {
+  name: string;
+  surname: string;
+  birthday: string;
   users: User[];
-  avatarName: string;
+  avatar: string;
   errors: {
-    name: boolean;
-    surname: boolean;
-    birthday: boolean;
-    avatar: boolean;
-    agree: boolean;
+    name: string;
+    surname: string;
+    birthday: string;
+    avatar: string;
   };
+  agree: boolean;
+  isModal: boolean;
 }
 
 interface UsersPageProps {
@@ -31,15 +34,14 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
     super(props);
 
     this.state = {
+      name: '',
+      surname: '',
+      birthday: '',
+      avatar: '',
       users: [],
-      avatarName: '',
-      errors: {
-        name: true,
-        surname: true,
-        birthday: true,
-        avatar: true,
-        agree: false,
-      },
+      errors: { name: '', surname: '', birthday: '', avatar: '' },
+      agree: false,
+      isModal: false,
     };
   }
 
@@ -58,24 +60,10 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
     if (name && surname && birthday && avatar) {
       this.setState({ users: [...this.state.users, newUser] });
       this.resetForm();
+      this.setModal();
     }
-  };
 
-  validate = () => {
-    const name = this.name.current!.value;
-    const surname = this.surname.current!.value;
-    const birthday = this.birthday.current!.value;
-    const avatar = this.file.current!.files![0];
-
-    if (!name) {
-      this.setState({ errors: { ...this.state.errors, name: false } });
-    } else if (!surname) {
-      this.setState({ errors: { ...this.state.errors, surname: false } });
-    } else if (!birthday) {
-      this.setState({ errors: { ...this.state.errors, birthday: false } });
-    } else if (!avatar) {
-      this.setState({ errors: { ...this.state.errors, avatar: false } });
-    }
+    this.validate();
   };
 
   handleGender = (param: boolean | undefined): string => {
@@ -88,21 +76,28 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
 
   handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const name = e.currentTarget.name;
-    if (e.currentTarget.value) {
-      this.setState({ errors: { ...this.state.errors, [name]: true } });
-    } else {
-      this.setState({ errors: { ...this.state.errors, [name]: false } });
+    const value = e.currentTarget.value;
+    this.setState({ ...this.state, [name]: value });
+
+    if (value) {
+      this.setState((prevState) => ({
+        ...prevState,
+        errors: {
+          ...prevState.errors,
+          [name]: '',
+        },
+      }));
     }
   };
 
   handleAvatar = (e: React.FormEvent<HTMLInputElement>) => {
     this.handleChange(e);
     const avatarName = e.currentTarget.value.split(`\\`).pop();
-    this.setState({ avatarName: avatarName || '' });
+    this.setState({ avatar: avatarName || '' });
   };
 
   handleAgree = () => {
-    this.setState({ errors: { ...this.state.errors, agree: !this.state.errors.agree } });
+    this.setState({ ...this.state, agree: !this.state.agree });
   };
 
   resetForm = () => {
@@ -113,12 +108,66 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
     this.gender.current!.checked = false;
     this.agree.current!.checked = false;
     this.file.current!.value = '';
-    this.setState({ avatarName: '' });
+    this.setState({ avatar: '' });
+    this.setState({ agree: false });
+  };
+
+  validate = () => {
+    if (this.state.name === '') {
+      this.setState((prevState) => ({
+        ...prevState,
+        errors: {
+          ...prevState.errors,
+          name: 'name',
+        },
+      }));
+    }
+    if (this.state.surname === '') {
+      this.setState((prevState) => ({
+        ...prevState,
+        errors: {
+          ...prevState.errors,
+          surname: 'surname',
+        },
+      }));
+    }
+
+    if (this.state.birthday === '') {
+      this.setState((prevState) => ({
+        ...prevState,
+        errors: {
+          ...prevState.errors,
+          birthday: 'birthday',
+        },
+      }));
+    }
+
+    if (this.state.avatar === '') {
+      this.setState((prevState) => ({
+        ...prevState,
+        errors: {
+          ...prevState.errors,
+          avatar: 'avatar',
+        },
+      }));
+    }
+  };
+
+  setModal = () => {
+    this.setState({ isModal: true });
+    setTimeout(() => {
+      this.setState({ isModal: false });
+    }, 2000);
   };
 
   render() {
     return (
       <div className={style.usersPage}>
+        {this.state.isModal && (
+          <div className={style.modal}>
+            <h2 className={style.modal__title}>New user added</h2>
+          </div>
+        )}
         <h1 className={style.usersPage__title}>Users</h1>
         <form className={style.form}>
           <h2 className={style.form__title}>Add new user</h2>
@@ -132,10 +181,9 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
                 name="name"
                 ref={this.name}
                 onChange={this.handleChange}
-                defaultValue=""
               />
             </label>
-            {!this.state.errors.name && (
+            {this.state.errors.name && (
               <p className={`${style.form__text} ${style.form__text_error}`}>
                 This field must not be empty
               </p>
@@ -153,7 +201,7 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
                 onChange={this.handleChange}
               />
             </label>
-            {!this.state.errors.surname && (
+            {this.state.errors.surname && (
               <p className={`${style.form__text} ${style.form__text_error}`}>
                 This field must not be empty
               </p>
@@ -170,7 +218,7 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
                 ref={this.birthday}
               />
             </label>
-            {!this.state.errors.birthday && (
+            {this.state.errors.birthday && (
               <p className={`${style.form__text} ${style.form__text_error}`}>Choose a date</p>
             )}
           </div>
@@ -191,7 +239,6 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
                 type="checkbox"
                 ref={this.gender}
                 className={style.switch__input}
-                onChange={this.handleChange}
                 defaultChecked={false}
               />
               <span className={style.switch__slider}></span>
@@ -211,9 +258,9 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
               ref={this.file}
             />
             <label htmlFor="avatar" className={style.form__btn}>
-              {this.state.avatarName ? this.state.avatarName : 'Add file'}
+              {this.state.avatar ? this.state.avatar : 'Add file'}
             </label>
-            {!this.state.errors.avatar && (
+            {this.state.errors.avatar && (
               <p className={`${style.form__text} ${style.form__text_error}`}>Add avatar</p>
             )}
           </div>
@@ -229,11 +276,6 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
               />
               <span className={style.check__box}></span>
             </label>
-            {!this.state.errors.agree && (
-              <p className={`${style.form__text} ${style.form__text_error}`}>
-                Agree should be checked
-              </p>
-            )}
           </div>
 
           <div className={style.form__group}>
@@ -242,11 +284,11 @@ export class UsersPage extends React.Component<UsersPageProps, UsersPageState> {
               type="submit"
               onClick={this.handleSubmit}
               disabled={
-                !this.state.errors.agree ||
-                !this.state.errors.name ||
-                !this.state.errors.surname ||
-                !this.state.errors.birthday ||
-                !this.state.errors.avatar
+                !this.state.agree ||
+                this.state.errors.name != '' ||
+                this.state.errors.surname != '' ||
+                this.state.errors.birthday != '' ||
+                this.state.errors.avatar != ''
               }
             >
               Submit

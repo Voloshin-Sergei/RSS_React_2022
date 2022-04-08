@@ -471,7 +471,7 @@ export class App extends React.Component {
         <Route path="/" element={<PageLayout />}>
           <Route path="about" element={<AboutPage />} />
           <Route path="users" element={<UsersPage />} />
-          <Route path="/" element={<HomePage persons={mock} />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

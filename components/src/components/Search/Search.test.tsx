@@ -13,18 +13,20 @@ describe('Search', () => {
     });
   });
 
+  const testOnclick = () => {};
+
   it('Search snapshot', () => {
-    const searchComponent = render(<Search />);
+    const searchComponent = render(<Search onClick={testOnclick} />);
     expect(searchComponent).toMatchSnapshot();
   });
 
   it('render input element', () => {
-    render(<Search />);
+    render(<Search onClick={testOnclick} />);
     expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
   });
 
   it('input element focus', () => {
-    render(<Search />);
+    render(<Search onClick={testOnclick} />);
     const input = screen.getByRole('textbox');
     expect(input).not.toHaveFocus();
     input.focus();
@@ -32,7 +34,7 @@ describe('Search', () => {
   });
 
   it('value input element may be changed', () => {
-    render(<Search />);
+    render(<Search onClick={testOnclick} />);
     fireEvent.change(screen.getByPlaceholderText(/search/i), {
       target: { value: 'test value' },
     });
@@ -40,12 +42,12 @@ describe('Search', () => {
   });
 
   it('render button element', () => {
-    render(<Search />);
+    render(<Search onClick={testOnclick} />);
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('Should call localStorage getItem on render', () => {
-    render(<Search />);
+    render(<Search onClick={testOnclick} />);
     expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
   });
 });

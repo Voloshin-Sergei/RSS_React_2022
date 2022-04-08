@@ -2,10 +2,21 @@ import React from 'react';
 
 import style from './Search.module.scss';
 
-export class Search extends React.Component {
-  state = {
-    searchValue: '',
-  };
+interface SearchProps {
+  onClick: (name: string) => void;
+}
+
+interface SearchState {
+  searchValue: string;
+}
+export class Search extends React.Component<SearchProps, SearchState> {
+  constructor(props: SearchProps) {
+    super(props);
+
+    this.state = {
+      searchValue: '',
+    };
+  }
 
   inputHandle = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = e.target.value;
@@ -27,10 +38,15 @@ export class Search extends React.Component {
     }
   }
 
+  handleSubmit = (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    this.props.onClick(this.state.searchValue);
+  };
+
   render() {
     return (
       <div className={style.search}>
-        <form className={style.form}>
+        <form className={style.form} onSubmit={this.handleSubmit}>
           <input
             className={style.form__input}
             placeholder="search"

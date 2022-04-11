@@ -1,10 +1,12 @@
 import React from 'react';
 import { Search } from '../../components/Search';
 import { ItemList } from '../../components/ItemList';
+import { Loader } from '../../components/Loader';
 import { Person } from '../../types';
 
 interface HomePageState {
   persons: Person[];
+  isLoader: boolean;
 }
 
 interface HomePageProps {
@@ -17,6 +19,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState> {
 
     this.state = {
       persons: [],
+      isLoader: false,
     };
   }
 
@@ -37,7 +40,10 @@ export class HomePage extends React.Component<HomePageProps, HomePageState> {
     return (
       <>
         <Search onClick={this.getCharacters} />
-        <ItemList persons={this.state.persons} />
+
+        {this.state.isLoader && <Loader />}
+
+        {this.state.persons.length && <ItemList persons={this.state.persons} />}
       </>
     );
   }

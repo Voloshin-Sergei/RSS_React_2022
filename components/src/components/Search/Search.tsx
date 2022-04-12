@@ -24,7 +24,7 @@ export class Search extends React.Component<SearchProps, SearchState> {
     this.setState({ searchValue: newValue });
   };
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const searchValue = localStorage.getItem('searchValue');
 
     if (searchValue) {
@@ -53,7 +53,9 @@ export class Search extends React.Component<SearchProps, SearchState> {
             onChange={this.inputHandle}
             value={this.state.searchValue}
           />
-          <button className={style.form__btn}>Search</button>
+          <button onClick={this.handleSubmit} className={style.form__btn}>
+            Search
+          </button>
         </form>
       </div>
     );

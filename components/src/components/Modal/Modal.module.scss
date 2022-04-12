@@ -1,0 +1,57 @@
+.layout {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  min-height: 200px;
+  min-width: 500px;
+
+  &__btn {
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+  }
+}
+
+.person {
+  max-width: 25rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: $main-shadow;
+  background: $primary-color;
+
+  &__img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__info {
+    padding: 1rem 1.5rem;
+  }
+
+  &__name {
+    text-align: center;
+    @include font(2.4rem, 700, $primary-color-dark);
+  }
+
+  &__type {
+    @include font(1.4rem, 400, $text-color-secondary);
+    text-transform: uppercase;
+  }
+
+  &__text {
+    @include font(1.4rem, 300, $text-color-main);
+  }
+}

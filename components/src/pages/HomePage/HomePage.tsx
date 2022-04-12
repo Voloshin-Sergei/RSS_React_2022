@@ -2,6 +2,7 @@ import React from 'react';
 import { Search } from '../../components/Search';
 import { ItemList } from '../../components/ItemList';
 import { Loader } from '../../components/Loader';
+import { Error } from '../../components/Error';
 import { Person } from '../../types';
 
 interface HomePageState {
@@ -46,12 +47,9 @@ export class HomePage extends React.Component<HomePageProps, HomePageState> {
     return (
       <>
         <Search onClick={this.getCharacters} />
-
         {this.state.isLoader && <Loader />}
-
-        {this.state.persons.length && <ItemList persons={this.state.persons} />}
-
-        {this.state.error && <h1>{this.state.error}</h1>}
+        {this.state.persons.length !== 0 && <ItemList persons={this.state.persons} />}
+        {this.state.error && <Error error={this.state.error} />}
       </>
     );
   }

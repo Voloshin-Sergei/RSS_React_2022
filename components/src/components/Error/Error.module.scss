@@ -1,0 +1,7 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.error {
+  @include font(3.6rem, 700, $text-color-main);
+  margin: 0 0 2rem 4rem;
+}

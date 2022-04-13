@@ -13,32 +13,51 @@ interface ItemListProps {
 
 interface ItemListState {
   modalShow: boolean;
-  id: number;
+  person: Person | null;
+  error: null;
 }
 export class ItemList extends React.Component<ItemListProps, ItemListState> {
   constructor(props: ItemListProps) {
     super(props);
     this.state = {
       modalShow: false,
-      id: 0,
+      person: null,
+      error: null,
     };
   }
 
   handleClick = (id: number) => {
-    console.log(id);
     if (id) {
-      this.setState({ modalShow: true, id });
+      this.getCharacter(id);
+      this.setState({ modalShow: true });
     }
   };
 
-  onCancel = () => {
-    this.setState({ modalShow: false });
+  modalClose = () => {
+    this.setState({ modalShow: false, person: null });
+  };
+
+  url = 'https://rickandmortyapi.com/api/character/';
+
+  getCharacter = (id: number) => {
+    fetch(`${this.url}${id}`).then(async (response) => {
+      const data = await response.json();
+      if (response.ok) {
+        this.setState({ person: data });
+      }
+      this.setState({ error: data.error });
+    });
   };
 
   render() {
     return (
       <section className={style.itemList}>
-        <Modal id={this.state.id} isOpen={this.state.modalShow} onCancel={this.onCancel} />
+        <Modal
+          isOpen={this.state.modalShow}
+          modalClose={this.modalClose}
+          person={this.state.person}
+        />
+
         <h1 className={style.itemList__title}>{this.props.persons ? 'Persons' : 'Users'}</h1>
         <div className={style.itemList__wrapper}>
           {this.props.persons?.map((item) => (

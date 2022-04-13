@@ -1,3 +1,6 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
 .layout {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -8,42 +11,43 @@
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
-  min-height: 200px;
-  min-width: 500px;
-
-  &__btn {
-    position: absolute;
-    right: 0;
-    background-color: #fff;
-  }
-}
-
-.person {
-  max-width: 25rem;
-  display: flex;
-  flex-direction: column;
+  min-width: 20.8rem;
   border-radius: 2rem;
   overflow: hidden;
   box-shadow: $main-shadow;
   background: $primary-color;
+  padding: 2rem;
+
+  &__btn {
+    position: absolute;
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+    color: $text-color-main;
+    background: transparent;
+  }
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
 
   &__img {
     width: 100%;
-    object-fit: cover;
-  }
-
-  &__info {
-    padding: 1rem 1.5rem;
+    border-radius: 50%;
+    max-width: 25rem;
+    align-self: center;
+    margin-bottom: 2rem;
   }
 
   &__name {
     text-align: center;
     @include font(2.4rem, 700, $primary-color-dark);
+    margin-bottom: 1rem;
   }
 
   &__type {

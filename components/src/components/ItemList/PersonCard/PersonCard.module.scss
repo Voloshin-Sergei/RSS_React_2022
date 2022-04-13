@@ -9,6 +9,7 @@
   overflow: hidden;
   box-shadow: $main-shadow;
   background: $primary-color;
+  cursor: pointer;
 
   &__img {
     width: 100%;
@@ -22,14 +23,5 @@
   &__name {
     text-align: center;
     @include font(2.4rem, 700, $primary-color-dark);
-  }
-
-  &__type {
-    @include font(1.4rem, 400, $text-color-secondary);
-    text-transform: uppercase;
-  }
-
-  &__text {
-    @include font(1.4rem, 300, $text-color-main);
   }
 }

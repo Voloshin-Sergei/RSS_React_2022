@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import style from './Search.module.scss';
 
@@ -6,58 +6,36 @@ interface SearchProps {
   onClick: (name: string) => void;
 }
 
-interface SearchState {
-  searchValue: string;
-}
-export class Search extends React.Component<SearchProps, SearchState> {
-  constructor(props: SearchProps) {
-    super(props);
+export const Search = ({ onClick }: SearchProps) => {
+  const [searchInput, setSearchInput] = useState(localStorage.getItem('searchValue') || '');
 
-    this.state = {
-      searchValue: '',
-    };
-  }
+  useEffect(() => {
+    localStorage.setItem('searchValue', searchInput);
+  }, [searchInput]);
 
-  inputHandle = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const inputHandle = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = e.target.value;
-
-    this.setState({ searchValue: newValue });
+    setSearchInput(newValue);
   };
 
-  componentDidMount() {
-    const searchValue = localStorage.getItem('searchValue');
-
-    if (searchValue) {
-      this.setState({ searchValue: searchValue });
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.state.searchValue) {
-      localStorage.setItem('searchValue', this.state.searchValue);
-    }
-  }
-
-  handleSubmit = (e: React.FormEvent<EventTarget>) => {
+  const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-    this.props.onClick(this.state.searchValue);
+    onClick(searchInput);
   };
 
-  render() {
-    return (
-      <div className={style.search}>
-        <form className={style.form} onSubmit={this.handleSubmit}>
-          <input
-            className={style.form__input}
-            placeholder="search"
-            onChange={this.inputHandle}
-            value={this.state.searchValue}
-          />
-          <button onClick={this.handleSubmit} className={style.form__btn}>
-            Search
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={style.search}>
+      <form className={style.form} onSubmit={handleSubmit}>
+        <input
+          className={style.form__input}
+          placeholder="search"
+          onChange={inputHandle}
+          value={searchInput}
+        />
+        <button onClick={handleSubmit} className={style.form__btn}>
+          Search
+        </button>
+      </form>
+    </div>
+  );
+};

@@ -27,6 +27,7 @@ export const Search = ({ onClick }: SearchProps) => {
     <div className={style.search}>
       <form className={style.form} onSubmit={handleSubmit}>
         <input
+          type="text"
           className={style.form__input}
           placeholder="search"
           onChange={inputHandle}

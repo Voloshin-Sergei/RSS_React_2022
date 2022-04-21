@@ -26,5 +26,5 @@ export interface User {
   birthday: string;
   country: string;
   gender: string;
-  avatar: FileList;
+  avatar: File;
 }

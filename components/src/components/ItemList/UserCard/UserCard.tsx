@@ -8,7 +8,6 @@ interface UserCardProps {
 }
 export const UserCard = (props: UserCardProps) => {
   const { name, surname, birthday, country, gender, avatar } = props.user;
-  console.log(props);
   return (
     <div className={style.user}>
       <img className={style.user__img} src={URL.createObjectURL(avatar)} />

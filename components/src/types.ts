@@ -20,7 +20,7 @@ export interface Person {
 }
 
 export interface User {
-  id: number;
+  id?: number;
   name: string;
   surname: string;
   birthday: string;

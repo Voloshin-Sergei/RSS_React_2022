@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { User } from '../../types';
 import style from './Form.module.scss';
 
@@ -14,7 +14,7 @@ type FormInputs = {
 };
 
 interface FormProps {
-  addUser: (data: any) => void;
+  addUser: (data: User) => void;
 }
 
 export const Form = (props: FormProps) => {
@@ -28,7 +28,12 @@ export const Form = (props: FormProps) => {
     register,
     watch,
     formState: { errors },
-  } = useForm<FormInputs>();
+  } = useForm<FormInputs>({
+    mode: 'onChange',
+    defaultValues: {
+      agree: false,
+    },
+  });
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     const { name, surname, country } = data;
@@ -41,9 +46,16 @@ export const Form = (props: FormProps) => {
     reset();
   };
 
-  const isAgree = watch('agree');
+  const avatarHandle = watch('avatar');
 
-  const handleGender = (param: boolean | undefined): string => {
+  useEffect(() => {
+    if (avatarHandle) {
+      handleAvatar(avatarHandle[0]?.name);
+      console.log(avatarHandle[0]?.name);
+    }
+  }, [avatarHandle]);
+
+  const handleGender = (param: boolean): string => {
     return param ? 'Female' : 'Male';
   };
 
@@ -51,9 +63,8 @@ export const Form = (props: FormProps) => {
     return data.split('-').reverse().join('.');
   };
 
-  const handleAvatar = (e: React.FormEvent<HTMLInputElement>) => {
-    const avatarName = e.currentTarget.value.split(`\\`).pop();
-    setAvatar(avatarName || '');
+  const handleAvatar = (name: string) => {
+    setAvatar(name || '');
   };
 
   const showModal = () => {
@@ -70,8 +81,8 @@ export const Form = (props: FormProps) => {
           <h2 className={style.modal__title}>New user added</h2>
         </div>
       )}
-
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+        <h2 className={style.form__title}>Add new user</h2>
         <div className={style.form__group}>
           <label htmlFor="name">
             <p className={style.form__text}>Name:</p>
@@ -137,18 +148,23 @@ export const Form = (props: FormProps) => {
         <div className={`${style.form__group} ${style.file}`}>
           <p className={`${style.form__text} ${style.file__text}`}>Choose a profile picture:</p>
 
-          <input
-            id="avatar"
-            type="file"
-            className={style.file__input}
-            accept=".png, .jpeg, .jpg, .svg"
-            {...register('avatar', { required: true })}
-          />
           <label htmlFor="avatar" className={style.form__btn}>
-            {avatar ? avatar : 'Add file'}
+            <input
+              id="avatar"
+              type="file"
+              className={style.file__input}
+              accept=".png, .jpeg, .jpg, .svg"
+              {...register('avatar', { required: true })}
+            />
+
+            {avatar ? 'File added' : 'Add file'}
           </label>
+          {avatar && <p className={`${style.form__text} ${style.file__avatar_name}`}>{avatar}</p>}
+
           {errors.avatar && (
-            <p className={`${style.form__text} ${style.form__text_error}`}>Add avatar</p>
+            <p className={`${style.form__text} ${style.form__text_error} ${style.file__error}`}>
+              Add avatar
+            </p>
           )}
         </div>
 
@@ -165,7 +181,7 @@ export const Form = (props: FormProps) => {
         </div>
 
         <div className={style.form__group}>
-          <button className={style.form__btn} type="submit" disabled={!isAgree}>
+          <button className={style.form__btn} type="submit" disabled={!watch('agree')}>
             Submit
           </button>
         </div>

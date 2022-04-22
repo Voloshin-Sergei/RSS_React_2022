@@ -15,7 +15,6 @@ export const UsersPage = () => {
 
   return (
     <div className={style.usersPage}>
-      {/* <h1 className={style.usersPage__title}>Users</h1> */}
       <Form addUser={addUser} />
       <ItemList users={users} />
     </div>

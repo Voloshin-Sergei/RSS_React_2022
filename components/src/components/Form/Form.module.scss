@@ -92,7 +92,7 @@
   height: 34px;
 
   &__input {
-    // opacity: 0;
+    opacity: 0;
     width: 0;
     height: 0;
 
@@ -142,6 +142,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  margin-top: 2rem;
 
   & > p {
     margin-left: 1.2rem;
@@ -173,17 +174,28 @@
 
 .file {
   position: relative;
-  margin-bottom: 3rem;
 
   &__text {
     margin-bottom: 1rem;
   }
 
-  // &__input {
-  //   opacity: 0;
-  //   visibility: hidden;
-  //   position: absolute;
-  // }
+  &__input {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+  }
+
+  &__avatar_name {
+    @include font(1.6rem, 400, $text-color-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 1rem;
+  }
+
+  &__error {
+    margin-top: 0.5rem;
+  }
 }
 
 .modal {

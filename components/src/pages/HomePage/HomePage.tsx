@@ -3,6 +3,7 @@ import { Search } from '../../components/Search';
 import { ItemList } from '../../components/ItemList';
 import { Loader } from '../../components/Loader';
 import { Error } from '../../components/Error';
+import { Title } from '../../components/Title';
 import { Person } from '../../types';
 
 interface HomePageState {
@@ -37,7 +38,7 @@ export const HomePage = () => {
     <>
       <Search onClick={getCharacters} />
       {isLoader && <Loader />}
-      {persons.length !== 0 && <ItemList persons={persons} />}
+      {persons.length !== 0 && <ItemList persons={persons}>{<Title text="Persons" />}</ItemList>}
       {error && <Error error={error} />}
     </>
   );

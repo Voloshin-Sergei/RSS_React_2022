@@ -9,13 +9,37 @@
     max-width: 40rem;
     width: 100%;
     margin: 0 1rem;
+
+    @media (max-width: 570px) {
+      max-width: 30rem;
+    }
+
+    @media (max-width: 490px) {
+      max-width: 25rem;
+    }
+
+    @media (max-width: 470px) {
+      max-width: 20rem;
+    }
+
+    @media (max-width: 450px) {
+      max-width: 15rem;
+    }
   }
 }
 
 .ghLogo {
   max-width: 5rem;
+
+  @media (max-width: 375px) {
+    max-width: 4rem;
+  }
 }
 
 .rssLogo {
   max-width: 6rem;
+
+  @media (max-width: 375px) {
+    max-width: 5rem;
+  }
 }

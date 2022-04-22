@@ -51,7 +51,6 @@ export const Form = (props: FormProps) => {
   useEffect(() => {
     if (avatarHandle) {
       handleAvatar(avatarHandle[0]?.name);
-      console.log(avatarHandle[0]?.name);
     }
   }, [avatarHandle]);
 

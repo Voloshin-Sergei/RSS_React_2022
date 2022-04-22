@@ -1,10 +1,11 @@
 import React from 'react';
+import { Title } from '../../components/Title';
 import style from './AboutPage.module.scss';
 
 export const AboutPage = () => {
   return (
     <div className={style.aboutPage}>
-      <h1 className={style.aboutPage__title}>About</h1>
+      <Title text="About" />
       <p className={style.aboutPage__text}>
         Rick and Morty is an American animated television series created by Dan Harmon and Justin
         Roiland that premiered on December 2, 2013 on Cartoon Network&apos;s Adult Swim programming

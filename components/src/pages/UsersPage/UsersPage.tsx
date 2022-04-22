@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ItemList } from '../../components/ItemList';
 import { Form } from '../../components/Form';
+import { Title } from '../../components/Title';
 import { User } from '../../types';
 import style from './UsersPage.module.scss';
 
@@ -16,7 +17,7 @@ export const UsersPage = () => {
   return (
     <div className={style.usersPage}>
       <Form addUser={addUser} />
-      <ItemList users={users} />
+      {users.length !== 0 && <ItemList users={users}>{<Title text="Users" />}</ItemList>}
     </div>
   );
 };

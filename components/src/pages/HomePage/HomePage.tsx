@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search } from '../../components/Search';
 import { ItemList } from '../../components/ItemList';
 import { Loader } from '../../components/Loader';
@@ -11,46 +11,34 @@ interface HomePageState {
   error: null;
 }
 
-interface HomePageProps {
-  props?: null;
-}
+export const HomePage = () => {
+  const [persons, setPersons] = useState<Person[]>([]);
+  const [isLoader, setIsLoader] = useState(false);
+  const [error, setError] = useState(null);
 
-export class HomePage extends React.Component<HomePageProps, HomePageState> {
-  constructor(props: HomePageProps) {
-    super(props);
+  const url = 'https://rickandmortyapi.com/api/';
 
-    this.state = {
-      persons: [],
-      isLoader: false,
-      error: null,
-    };
-  }
-
-  url = 'https://rickandmortyapi.com/api/';
-
-  getCharacters = (name: string) => {
-    this.setState({ persons: [] });
-    fetch(`${this.url}character?name=${name}`).then(async (response) => {
-      this.setState({ isLoader: true });
+  const getCharacters = (name: string) => {
+    setPersons([]);
+    fetch(`${url}character?name=${name}`).then(async (response) => {
+      setIsLoader(true);
       const data = await response.json();
 
       if (response.ok) {
-        this.setState({ persons: data.results });
+        setPersons(data.results);
       }
 
-      this.setState({ error: data.error });
-      this.setState({ isLoader: false });
+      setError(data.error);
+      setIsLoader(false);
     });
   };
 
-  render() {
-    return (
-      <>
-        <Search onClick={this.getCharacters} />
-        {this.state.isLoader && <Loader />}
-        {this.state.persons.length !== 0 && <ItemList persons={this.state.persons} />}
-        {this.state.error && <Error error={this.state.error} />}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Search onClick={getCharacters} />
+      {isLoader && <Loader />}
+      {persons.length !== 0 && <ItemList persons={persons} />}
+      {error && <Error error={error} />}
+    </>
+  );
+};

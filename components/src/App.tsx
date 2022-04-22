@@ -464,17 +464,15 @@ const mock = [
   },
 ];
 
-export class App extends React.Component {
-  render() {
-    return (
-      <Routes>
-        <Route path="/" element={<PageLayout />}>
-          <Route path="about" element={<AboutPage />} />
-          <Route path="users" element={<UsersPage />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-    );
-  }
-}
+export const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<PageLayout />}>
+        <Route path="about" element={<AboutPage />} />
+        <Route path="users" element={<UsersPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  );
+};

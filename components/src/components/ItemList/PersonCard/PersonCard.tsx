@@ -7,20 +7,18 @@ interface PersonCardProps {
   person: Person;
   onClick?: () => void;
 }
-export class PersonCard extends React.Component<PersonCardProps> {
-  constructor(props: PersonCardProps) {
-    super(props);
-  }
+export const PersonCard = (props: PersonCardProps) => {
+  const {
+    person: { image, name },
+    onClick,
+  } = props;
 
-  render() {
-    const { image, name } = this.props.person;
-    return (
-      <div className={style.person} onClick={this.props.onClick}>
-        <img className={style.person__img} src={`${image}`} />
-        <div className={style.person__info}>
-          <h2 className={style.person__name}>{name}</h2>
-        </div>
+  return (
+    <div className={style.person} onClick={onClick}>
+      <img className={style.person__img} src={`${image}`} />
+      <div className={style.person__info}>
+        <h2 className={style.person__name}>{name}</h2>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

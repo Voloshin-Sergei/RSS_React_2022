@@ -6,8 +6,7 @@ interface ErrorProps {
   error: string;
 }
 
-export class Error extends React.Component<ErrorProps> {
-  render() {
-    return <h1 className={style.error}>{this.props.error}</h1>;
-  }
-}
+export const Error = (props: ErrorProps) => {
+  const { error } = props;
+  return <h1 className={style.error}>{error}</h1>;
+};

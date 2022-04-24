@@ -80,7 +80,7 @@ export const Form = (props: FormProps) => {
           <h2 className={style.modal__title}>New user added</h2>
         </div>
       )}
-      <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+      <form data-testid="form" onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <h2 className={style.form__title}>Add new user</h2>
         <div className={style.form__group}>
           <label htmlFor="name">

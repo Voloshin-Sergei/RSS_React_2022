@@ -6,12 +6,6 @@ import { Error } from '../../components/Error';
 import { Title } from '../../components/Title';
 import { Person } from '../../types';
 
-interface HomePageState {
-  persons: Person[];
-  isLoader: boolean;
-  error: null;
-}
-
 export const HomePage = () => {
   const [persons, setPersons] = useState<Person[]>([]);
   const [isLoader, setIsLoader] = useState(false);

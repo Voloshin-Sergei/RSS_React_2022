@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { PersonCard } from './PersonCard';
 
-const testCard = {
+const testPerson = {
   id: 1,
   name: 'Rick Sanchez',
   status: 'Alive',
@@ -27,18 +27,14 @@ const testCard = {
 
 describe('PersonCard', () => {
   it('PersonCard snapshot', () => {
-    const personCardComponent = render(<PersonCard person={testCard} />);
+    const personCardComponent = render(<PersonCard person={testPerson} />);
     expect(personCardComponent).toMatchSnapshot();
   });
 
-  it('render elements in PersonCard', () => {
-    render(<PersonCard person={testCard} />);
+  it('render elements in PersonCard with data test', () => {
+    render(<PersonCard person={testPerson} />);
 
     expect(screen.getByRole('img')).toBeInTheDocument();
-    expect(screen.getByText(testCard.name)).toBeInTheDocument();
-    expect(screen.getByText(testCard.species)).toBeInTheDocument();
-    expect(screen.getByText(testCard.status)).toBeInTheDocument();
-    expect(screen.getByText(testCard.gender)).toBeInTheDocument();
-    expect(screen.getByText(testCard.location.name)).toBeInTheDocument();
+    expect(screen.getByText(testPerson.name)).toBeInTheDocument();
   });
 });

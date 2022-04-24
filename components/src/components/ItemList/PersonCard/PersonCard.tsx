@@ -14,7 +14,7 @@ export const PersonCard = (props: PersonCardProps) => {
   } = props;
 
   return (
-    <div className={style.person} onClick={onClick}>
+    <div data-testid="person" className={style.person} onClick={onClick}>
       <img className={style.person__img} src={`${image}`} />
       <div className={style.person__info}>
         <h2 className={style.person__name}>{name}</h2>

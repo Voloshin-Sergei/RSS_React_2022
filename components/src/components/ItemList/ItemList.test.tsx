@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { ItemList } from './ItemList';
 
-const testCards = [
+const testPersons = [
   {
     id: 1,
     name: 'Rick Sanchez',
@@ -72,16 +72,49 @@ const testCards = [
     created: '2017-11-04T18:48:46.250Z',
   },
 ];
+
+const testUsers = [
+  {
+    name: 'testName',
+    surname: 'testSurname',
+    birthday: '07.04.2022',
+    country: 'Belarus',
+    gender: 'Female',
+    avatar: new File(['(⌐□_□)'], 'test.jpg', { type: 'image/jpeg' }),
+  },
+  {
+    name: 'testName',
+    surname: 'testSurname',
+    birthday: '07.04.2022',
+    country: 'Belarus',
+    gender: 'Female',
+    avatar: new File(['(⌐□_□)'], 'test.jpg', { type: 'image/jpeg' }),
+  },
+];
+
+const onClick = jest.fn();
 describe('ItemList', () => {
-  it('ItemList snapshot', () => {
-    const searchComponent = render(<ItemList persons={testCards} />);
-    expect(searchComponent).toMatchSnapshot();
+  it('ItemList snapshot witch persons', () => {
+    const ItemListComponent = render(<ItemList persons={testPersons} />);
+    expect(ItemListComponent).toMatchSnapshot();
   });
 
-  it('render elements in ItemList', () => {
-    const { container } = render(<ItemList persons={testCards} />);
+  it('ItemList snapshot witch users', () => {
+    global.URL.createObjectURL = jest.fn();
+    const ItemListComponent = render(<ItemList users={testUsers} />);
+    expect(ItemListComponent).toMatchSnapshot();
+  });
 
-    expect(screen.getByText(/Persons/i)).toBeInTheDocument();
-    expect(container.getElementsByClassName('person').length).toBe(testCards.length);
+  it('render PersonCards in ItemList', () => {
+    const { container } = render(<ItemList persons={testPersons} />);
+
+    expect(container.getElementsByClassName('person').length).toBe(testPersons.length);
+  });
+
+  it('render UserCards in ItemList', () => {
+    global.URL.createObjectURL = jest.fn();
+    const { container } = render(<ItemList users={testUsers} />);
+
+    expect(container.getElementsByClassName('user').length).toBe(testUsers.length);
   });
 });

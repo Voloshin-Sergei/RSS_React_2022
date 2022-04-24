@@ -27,8 +27,8 @@ const testCard = {
 
 describe('PersonCard', () => {
   it('PersonCard snapshot', () => {
-    const searchComponent = render(<PersonCard person={testCard} />);
-    expect(searchComponent).toMatchSnapshot();
+    const personCardComponent = render(<PersonCard person={testCard} />);
+    expect(personCardComponent).toMatchSnapshot();
   });
 
   it('render elements in PersonCard', () => {

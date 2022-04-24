@@ -14,6 +14,7 @@ Object {
           <input
             class="form__input"
             placeholder="search"
+            type="text"
             value=""
           />
           <button
@@ -23,18 +24,6 @@ Object {
           </button>
         </form>
       </div>
-      <section
-        class="itemList"
-      >
-        <h1
-          class="itemList__title"
-        >
-          Persons
-        </h1>
-        <div
-          class="itemList__wrapper"
-        />
-      </section>
     </div>
   </body>,
   "container": <div>
@@ -47,6 +36,7 @@ Object {
         <input
           class="form__input"
           placeholder="search"
+          type="text"
           value=""
         />
         <button
@@ -56,18 +46,6 @@ Object {
         </button>
       </form>
     </div>
-    <section
-      class="itemList"
-    >
-      <h1
-        class="itemList__title"
-      >
-        Persons
-      </h1>
-      <div
-        class="itemList__wrapper"
-      />
-    </section>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

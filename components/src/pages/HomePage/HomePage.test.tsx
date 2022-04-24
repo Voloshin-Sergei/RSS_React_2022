@@ -9,6 +9,7 @@ describe('HomePage', () => {
 
   it('render HomePage elements', () => {
     render(<HomePage />);
-    expect(screen.getByText(/Persons/i)).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
+    expect(screen.getByText(/search/i)).toBeInTheDocument();
   });
 });

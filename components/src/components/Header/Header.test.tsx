@@ -18,7 +18,7 @@ describe('Header', () => {
         <Header />
       </BrowserRouter>
     );
-    expect(screen.getAllByRole('link')).toHaveLength(3);
+    expect(screen.getAllByRole('link')).toHaveLength(4);
   });
 
   it('render navigation elements', () => {
@@ -29,5 +29,6 @@ describe('Header', () => {
     );
     expect(screen.getByText(/About/i)).toBeInTheDocument();
     expect(screen.getByText(/Home/i)).toBeInTheDocument();
+    expect(screen.getByText(/Users/i)).toBeInTheDocument();
   });
 });

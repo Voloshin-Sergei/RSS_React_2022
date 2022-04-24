@@ -48,6 +48,16 @@ Object {
                     About us
                   </a>
                 </li>
+                <li
+                  class="nav__item"
+                >
+                  <a
+                    class="nav__link"
+                    href="/users"
+                  >
+                    Users
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
@@ -101,6 +111,16 @@ Object {
                   href="/about"
                 >
                   About us
+                </a>
+              </li>
+              <li
+                class="nav__item"
+              >
+                <a
+                  class="nav__link"
+                  href="/users"
+                >
+                  Users
                 </a>
               </li>
             </ul>

@@ -14,6 +14,7 @@ Object {
           <input
             class="form__input"
             placeholder="search"
+            type="text"
             value=""
           />
           <button
@@ -35,6 +36,7 @@ Object {
         <input
           class="form__input"
           placeholder="search"
+          type="text"
           value=""
         />
         <button

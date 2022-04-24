@@ -1,10 +1,111 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PersonCard PersonCard snapshot 1`] = `
+exports[`Modal window Modal snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <div
+        class="layout"
+        data-testid="modal"
+      />
+      <div
+        class="modal"
+      >
+        <button
+          class="modal__btn"
+        >
+          ✖
+        </button>
+        <div
+          class="person"
+        >
+          <img
+            class="person__img"
+            src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+          />
+          <div
+            class="person__info"
+          >
+            <h2
+              class="person__name"
+            >
+              Rick Sanchez
+            </h2>
+            <p
+              class="person__species"
+            >
+              <span
+                class="person__type"
+              >
+                species: 
+              </span>
+              <span
+                class="person__text"
+              >
+                Human
+              </span>
+            </p>
+            <p
+              class="person__gender"
+            >
+              <span
+                class="person__type"
+              >
+                gender: 
+              </span>
+              <span
+                class="person__text"
+              >
+                Male
+              </span>
+            </p>
+            <p
+              class="person__status"
+            >
+              <span
+                class="person__type"
+              >
+                status: 
+              </span>
+              <span
+                class="person__text"
+              >
+                Alive
+              </span>
+            </p>
+            <p
+              class="person__location"
+            >
+              <span
+                class="person__type"
+              >
+                location: 
+              </span>
+              <span
+                class="person__text"
+              >
+                Citadel of Ricks
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="layout"
+      data-testid="modal"
+    />
+    <div
+      class="modal"
+    >
+      <button
+        class="modal__btn"
+      >
+        ✖
+      </button>
       <div
         class="person"
       >
@@ -77,81 +178,6 @@ Object {
             </span>
           </p>
         </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="person"
-    >
-      <img
-        class="person__img"
-        src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-      />
-      <div
-        class="person__info"
-      >
-        <h2
-          class="person__name"
-        >
-          Rick Sanchez
-        </h2>
-        <p
-          class="person__species"
-        >
-          <span
-            class="person__type"
-          >
-            species: 
-          </span>
-          <span
-            class="person__text"
-          >
-            Human
-          </span>
-        </p>
-        <p
-          class="person__gender"
-        >
-          <span
-            class="person__type"
-          >
-            gender: 
-          </span>
-          <span
-            class="person__text"
-          >
-            Male
-          </span>
-        </p>
-        <p
-          class="person__status"
-        >
-          <span
-            class="person__type"
-          >
-            status: 
-          </span>
-          <span
-            class="person__text"
-          >
-            Alive
-          </span>
-        </p>
-        <p
-          class="person__location"
-        >
-          <span
-            class="person__type"
-          >
-            location: 
-          </span>
-          <span
-            class="person__text"
-          >
-            Citadel of Ricks
-          </span>
-        </p>
       </div>
     </div>
   </div>,

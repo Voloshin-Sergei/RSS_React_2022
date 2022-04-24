@@ -13,7 +13,7 @@ describe('Search', () => {
     });
   });
 
-  const testOnclick = () => {};
+  const testOnclick = jest.fn();
 
   it('Search snapshot', () => {
     const searchComponent = render(<Search onClick={testOnclick} />);
@@ -44,6 +44,9 @@ describe('Search', () => {
   it('render button element', () => {
     render(<Search onClick={testOnclick} />);
     expect(screen.getByRole('button')).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button'));
+    expect(testOnclick).toHaveBeenCalled();
   });
 
   it('Should call localStorage getItem on render', () => {

@@ -20,7 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --watchAll=false",
+    "test-cover": "react-scripts test --coverage --watchAll=false",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "eslint": "eslint src --ext .jsx,.ts,.tsx"

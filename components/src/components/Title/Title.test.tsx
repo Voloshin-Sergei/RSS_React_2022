@@ -5,8 +5,8 @@ const testTitle = 'This is test Title';
 
 describe('Title', () => {
   it('Title snapshot', () => {
-    const footerComponent = render(<Title text={testTitle} />);
-    expect(footerComponent).toMatchSnapshot();
+    const titleComponent = render(<Title text={testTitle} />);
+    expect(titleComponent).toMatchSnapshot();
   });
 
   it('render Title component', () => {

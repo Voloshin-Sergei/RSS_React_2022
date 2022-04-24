@@ -16,7 +16,7 @@ export const Modal = (props: ModalProps) => {
     <>
       {isOpen && (
         <>
-          <div className={style.layout} onClick={modalClose}></div>
+          <div data-testid="modal" className={style.layout} onClick={modalClose}></div>
           <div className={style.modal}>
             <button className={style.modal__btn} onClick={modalClose}>
               &#10006;

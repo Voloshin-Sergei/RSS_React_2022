@@ -9,7 +9,7 @@ Object {
         class="notFoundPage"
       >
         <h1
-          class="notFoundPage__title"
+          class="title"
         >
           404
         </h1>
@@ -31,7 +31,7 @@ Object {
       class="notFoundPage"
     >
       <h1
-        class="notFoundPage__title"
+        class="title"
       >
         404
       </h1>

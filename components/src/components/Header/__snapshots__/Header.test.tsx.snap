@@ -43,6 +43,7 @@ Object {
                 >
                   <a
                     class="nav__link"
+                    data-testid="about"
                     href="/about"
                   >
                     About us
@@ -53,6 +54,7 @@ Object {
                 >
                   <a
                     class="nav__link"
+                    data-testid="users"
                     href="/users"
                   >
                     Users
@@ -108,6 +110,7 @@ Object {
               >
                 <a
                   class="nav__link"
+                  data-testid="about"
                   href="/about"
                 >
                   About us
@@ -118,6 +121,7 @@ Object {
               >
                 <a
                   class="nav__link"
+                  data-testid="users"
                   href="/users"
                 >
                   Users

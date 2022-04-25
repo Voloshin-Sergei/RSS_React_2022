@@ -30,6 +30,7 @@ Object {
               </p>
               <input
                 class="form__input"
+                data-testid="name"
                 name="name"
                 type="text"
               />
@@ -48,6 +49,7 @@ Object {
               </p>
               <input
                 class="form__input"
+                data-testid="surname"
                 name="surname"
               />
             </label>
@@ -65,6 +67,7 @@ Object {
               </p>
               <input
                 class="form__input"
+                data-testid="date"
                 name="birthday"
                 type="date"
               />
@@ -83,6 +86,7 @@ Object {
               </p>
               <select
                 class="form__input"
+                data-testid="country"
                 name="country"
               >
                 <option
@@ -116,6 +120,7 @@ Object {
             >
               <input
                 class="switch__input"
+                data-testid="gender"
                 name="gender"
                 type="checkbox"
               />
@@ -144,6 +149,7 @@ Object {
               <input
                 accept=".png, .jpeg, .jpg, .svg"
                 class="file__input"
+                data-testid="avatar"
                 id="avatar"
                 name="avatar"
                 type="file"
@@ -165,6 +171,7 @@ Object {
               </p>
               <input
                 class="check__input"
+                data-testid="agree"
                 name="agree"
                 type="checkbox"
               />
@@ -178,6 +185,7 @@ Object {
           >
             <button
               class="form__btn"
+              data-testid="submit-btn"
               disabled=""
               type="submit"
             >
@@ -214,6 +222,7 @@ Object {
             </p>
             <input
               class="form__input"
+              data-testid="name"
               name="name"
               type="text"
             />
@@ -232,6 +241,7 @@ Object {
             </p>
             <input
               class="form__input"
+              data-testid="surname"
               name="surname"
             />
           </label>
@@ -249,6 +259,7 @@ Object {
             </p>
             <input
               class="form__input"
+              data-testid="date"
               name="birthday"
               type="date"
             />
@@ -267,6 +278,7 @@ Object {
             </p>
             <select
               class="form__input"
+              data-testid="country"
               name="country"
             >
               <option
@@ -300,6 +312,7 @@ Object {
           >
             <input
               class="switch__input"
+              data-testid="gender"
               name="gender"
               type="checkbox"
             />
@@ -328,6 +341,7 @@ Object {
             <input
               accept=".png, .jpeg, .jpg, .svg"
               class="file__input"
+              data-testid="avatar"
               id="avatar"
               name="avatar"
               type="file"
@@ -349,6 +363,7 @@ Object {
             </p>
             <input
               class="check__input"
+              data-testid="agree"
               name="agree"
               type="checkbox"
             />
@@ -362,6 +377,7 @@ Object {
         >
           <button
             class="form__btn"
+            data-testid="submit-btn"
             disabled=""
             type="submit"
           >

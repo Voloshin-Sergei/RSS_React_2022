@@ -9,7 +9,7 @@ Object {
         class="aboutPage"
       >
         <h1
-          class="aboutPage__title"
+          class="title"
         >
           About
         </h1>
@@ -36,7 +36,7 @@ Object {
       class="aboutPage"
     >
       <h1
-        class="aboutPage__title"
+        class="title"
       >
         About
       </h1>

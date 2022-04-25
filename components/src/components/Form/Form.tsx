@@ -76,7 +76,7 @@ export const Form = (props: FormProps) => {
   return (
     <>
       {modal && (
-        <div className={style.modal}>
+        <div data-testid="modal" className={style.modal}>
           <h2 className={style.modal__title}>New user added</h2>
         </div>
       )}
@@ -86,6 +86,7 @@ export const Form = (props: FormProps) => {
           <label htmlFor="name">
             <p className={style.form__text}>Name:</p>
             <input
+              data-testid="name"
               type="text"
               {...register('name', { required: true })}
               className={style.form__input}
@@ -101,7 +102,11 @@ export const Form = (props: FormProps) => {
         <div className={style.form__group}>
           <label htmlFor="surname">
             <p className={style.form__text}>Surname:</p>
-            <input {...register('surname', { required: true })} className={style.form__input} />
+            <input
+              data-testid="surname"
+              {...register('surname', { required: true })}
+              className={style.form__input}
+            />
           </label>
           {errors.surname && (
             <p className={`${style.form__text} ${style.form__text_error}`}>
@@ -114,6 +119,7 @@ export const Form = (props: FormProps) => {
           <label htmlFor="birthday">
             <p className={style.form__text}>Birthday:</p>
             <input
+              data-testid="date"
               type="date"
               {...register('birthday', { required: true })}
               className={style.form__input}
@@ -127,7 +133,7 @@ export const Form = (props: FormProps) => {
         <div className={style.form__group}>
           <label htmlFor="country">
             <p className={style.form__text}>Country:</p>
-            <select {...register('country')} className={style.form__input}>
+            <select data-testid="country" {...register('country')} className={style.form__input}>
               <option value="Russia">Russia</option>
               <option value="Belarus">Belarus</option>
               <option value="Ukraine">Ukraine</option>
@@ -138,7 +144,12 @@ export const Form = (props: FormProps) => {
         <div className={`${style.form__group} ${style.form__group_switch}`}>
           <p className={style.form__text}>Male</p>
           <label className={style.switch}>
-            <input type="checkbox" {...register('gender')} className={style.switch__input} />
+            <input
+              data-testid="gender"
+              type="checkbox"
+              {...register('gender')}
+              className={style.switch__input}
+            />
             <span className={style.switch__slider}></span>
           </label>
           <p className={style.form__text}>Female</p>
@@ -149,6 +160,7 @@ export const Form = (props: FormProps) => {
 
           <label htmlFor="avatar" className={style.form__btn}>
             <input
+              data-testid="avatar"
               id="avatar"
               type="file"
               className={style.file__input}
@@ -171,6 +183,7 @@ export const Form = (props: FormProps) => {
           <label className={style.check}>
             <p className={style.form__text}>I gree</p>
             <input
+              data-testid="agree"
               type="checkbox"
               {...register('agree', { required: true })}
               className={style.check__input}
@@ -180,7 +193,12 @@ export const Form = (props: FormProps) => {
         </div>
 
         <div className={style.form__group}>
-          <button className={style.form__btn} type="submit" disabled={!watch('agree')}>
+          <button
+            data-testid="submit-btn"
+            className={style.form__btn}
+            type="submit"
+            disabled={!watch('agree')}
+          >
             Submit
           </button>
         </div>

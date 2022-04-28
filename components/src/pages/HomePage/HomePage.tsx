@@ -15,6 +15,7 @@ export const HomePage = () => {
 
   const getCharacters = (name: string) => {
     setPersons([]);
+    setError(null);
     fetch(`${url}character?name=${name}`).then(async (response) => {
       setIsLoader(true);
       const data = await response.json();

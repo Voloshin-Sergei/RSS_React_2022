@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PageLayout } from './components/PageLayout';
 import { HomePage } from './pages/HomePage';
@@ -6,6 +6,8 @@ import { AboutPage } from './pages/AboutPage/AboutPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { UsersPage } from './pages/UsersPage';
 import { PersonPage } from './pages/PersonPage';
+import { appReducer } from './store/reducer';
+import { initialState, AppContext } from './store/state';
 
 import './App.module.scss';
 
@@ -466,15 +468,19 @@ const mock = [
 ];
 
 export const App = () => {
+  const [state, dispatch] = useReducer(appReducer, initialState);
+
   return (
-    <Routes>
-      <Route path="/" element={<PageLayout />}>
-        <Route path="about" element={<AboutPage />} />
-        <Route path="users" element={<UsersPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path=":id" element={<PersonPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+          <Route path="about" element={<AboutPage />} />
+          <Route path="users" element={<UsersPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path=":id" element={<PersonPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </AppContext.Provider>
   );
 };

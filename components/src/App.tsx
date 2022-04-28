@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage/AboutPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { UsersPage } from './pages/UsersPage';
+import { PersonPage } from './pages/PersonPage';
 
 import './App.module.scss';
 
@@ -471,6 +472,7 @@ export const App = () => {
         <Route path="about" element={<AboutPage />} />
         <Route path="users" element={<UsersPage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path=":id" element={<PersonPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

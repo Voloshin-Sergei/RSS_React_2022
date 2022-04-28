@@ -1,0 +1,60 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.person {
+  padding: 0 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  background: $secondary-color;
+  @include font(2rem, 500, $text-color-main);
+  padding: 0.5rem 2rem;
+  border-radius: 5rem;
+  transition: all 0.2s ease-in;
+  box-shadow: $main-shadow;
+  align-self: flex-end;
+
+  &:hover {
+    background: darken($color: $secondary-color, $amount: 10);
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+
+  &__img {
+    width: 100%;
+    border-radius: 50%;
+    max-width: 25rem;
+    align-self: center;
+    margin-bottom: 2rem;
+  }
+
+  &__description {
+    padding: 0 6rem;
+
+    @media (max-width: 610px) {
+      padding: 0;
+    }
+  }
+
+  &__type {
+    @include font(3rem, 400, $text-color-secondary);
+    text-transform: uppercase;
+
+    @media (max-width: 610px) {
+      font-size: 2rem;
+    }
+  }
+
+  &__text {
+    @include font(2rem, 300, $text-color-main);
+
+    @media (max-width: 610px) {
+      font-size: 1.6rem;
+    }
+  }
+}

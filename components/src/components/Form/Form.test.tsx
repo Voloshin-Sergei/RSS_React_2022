@@ -96,7 +96,9 @@ describe('Form', () => {
       userEvent.upload(input, file);
 
       expect(input.files).toHaveLength(1);
-      expect(input.files[0]).toStrictEqual(file[0]);
+      if (input.files) {
+        expect(input.files[0]).toStrictEqual(file[0]);
+      }
     });
   });
 

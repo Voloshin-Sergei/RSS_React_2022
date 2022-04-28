@@ -2,6 +2,7 @@
 @import '../../../scss/mixins';
 
 .person {
+  height: 100%;
   max-width: 25rem;
   display: flex;
   flex-direction: column;

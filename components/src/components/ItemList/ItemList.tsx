@@ -1,7 +1,6 @@
-import React, { Children, ReactNode, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { PersonCard } from './PersonCard';
 import { UserCard } from './UserCard';
-import { Modal } from '../Modal';
 import { Person, User } from '../../types';
 
 import style from './ItemList.module.scss';
@@ -15,19 +14,16 @@ interface ItemListProps {
 export const ItemList = (props: ItemListProps) => {
   const { children, persons, users } = props;
 
-  const [modalShow, setModalShow] = useState(false);
   const [person, setPerson] = useState<Person | null>(null);
   const [error, setError] = useState(false);
 
   const handleClick = (id: number) => {
     if (id) {
       getCharacter(id);
-      setModalShow(true);
     }
   };
 
   const modalClose = () => {
-    setModalShow(false);
     setPerson(null);
   };
 
@@ -45,7 +41,6 @@ export const ItemList = (props: ItemListProps) => {
 
   return (
     <section className={style.itemList}>
-      <Modal isOpen={modalShow} modalClose={modalClose} person={person} />
       {children}
       <div className={style.itemList__wrapper}>
         {persons?.map((item) => (

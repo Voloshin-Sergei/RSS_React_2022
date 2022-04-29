@@ -1,40 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../store/state';
 import { Search } from '../../components/Search';
 import { ItemList } from '../../components/ItemList';
 import { Loader } from '../../components/Loader';
 import { Error } from '../../components/Error';
 import { Title } from '../../components/Title';
-import { Person } from '../../types';
 
 export const HomePage = () => {
-  const [persons, setPersons] = useState<Person[]>([]);
-  const [isLoader, setIsLoader] = useState(false);
-  const [error, setError] = useState(null);
+  const {
+    state: { error, persons, isLoading },
+  } = useContext(AppContext);
 
-  const url = 'https://rickandmortyapi.com/api/';
+  const renderItemList = () => {
+    if (error) {
+      return <Error error={error.error} />;
+    }
+    if (isLoading) {
+      return <Loader />;
+    }
 
-  const getCharacters = (name: string) => {
-    setPersons([]);
-    setError(null);
-    fetch(`${url}character?name=${name}`).then(async (response) => {
-      setIsLoader(true);
-      const data = await response.json();
-
-      if (response.ok) {
-        setPersons(data.results);
-      }
-
-      setError(data.error);
-      setIsLoader(false);
-    });
+    if (persons.length !== 0) {
+      return <ItemList persons={persons}>{<Title text="Persons" />}</ItemList>;
+    }
   };
 
   return (
     <>
-      <Search onClick={getCharacters} />
-      {isLoader && <Loader />}
-      {persons.length !== 0 && <ItemList persons={persons}>{<Title text="Persons" />}</ItemList>}
-      {error && <Error error={error} />}
+      <Search />
+      {renderItemList()}
     </>
   );
 };

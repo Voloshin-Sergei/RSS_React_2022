@@ -2,35 +2,46 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Title } from '../../components/Title';
 import { Error } from '../../components/Error';
+import { api } from '../../api/api';
 import { Person } from '../../types';
 
 import style from './PersonPage.module.scss';
 
 export const PersonPage = () => {
-  const [person, setPerson] = useState<Person | null>(null);
+  const [person, setPerson] = useState<Person>({
+    id: 0,
+    name: '',
+    status: '',
+    species: '',
+    type: '',
+    gender: '',
+    origin: {
+      name: '',
+      url: '',
+    },
+    location: {
+      name: '',
+      url: '',
+    },
+    image: '',
+    episode: [],
+    url: '',
+    created: '',
+  });
   const [error, setError] = useState(null);
 
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
-  console.log(person);
-
-  const url = 'https://rickandmortyapi.com/api/character/';
-
-  const getCharacter = (id: number) => {
-    setError(null);
-    fetch(`${url}${id}`).then(async (response) => {
-      const data = await response.json();
-      if (response.ok) {
-        setPerson(data);
-      }
-      setError(data.error);
-    });
-  };
 
   useEffect(() => {
-    getCharacter(Number(id));
+    const getPerson = async () => {
+      const newPerson = await api.getPerson(Number(id));
+      setPerson(newPerson.data);
+    };
+
+    getPerson();
   }, [id]);
 
   return (

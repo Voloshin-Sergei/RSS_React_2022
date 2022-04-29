@@ -1,16 +1,18 @@
-import { Person } from '../types';
+import { GetPersonsStarted, GetPersonsSuccess, GetPersonsFailure, Actions } from './types';
+import { AxiosResponse, AxiosError } from 'axios';
+import { PersonsResponse, ErrorType } from '../types';
 
-export enum Actions {
-  ADD_PERSONS = 'ADD_PERSONS',
-}
+export const getPersonsStarted = (): GetPersonsStarted => ({
+  type: Actions.GET_PERSONS_STARTED,
+  payload: true,
+});
 
-export interface FetchPersons {
-  type: Actions.ADD_PERSONS;
-  payload: Person[];
-}
+export const getPersonsSuccess = (response: PersonsResponse): GetPersonsSuccess => ({
+  type: Actions.GET_PERSONS_SUCCESS,
+  payload: { persons: response.results, isLoading: false },
+});
 
-export const fetchPersons = () => {
-  type: Actions.ADD_PERSONS;
-};
-
-export type ActionTypes = FetchPersons;
+export const getPersonsFailure = (error: ErrorType): GetPersonsFailure => ({
+  type: Actions.GET_PERSONS_FAILURE,
+  payload: { error: error, isLoading: false },
+});

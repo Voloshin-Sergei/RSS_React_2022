@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../../store/state';
+import { getPersonsStarted, getPersonsSuccess, getPersonsFailure } from '../../store/actions';
+import { ErrorType } from '../../types';
+import { api } from '../../api/api';
+import axios, { AxiosError } from 'axios';
 import style from './Search.module.scss';
 
-interface SearchProps {
-  onClick: (name: string) => void;
-}
-
-export const Search = ({ onClick }: SearchProps) => {
+export const Search = () => {
+  const { state, dispatch } = useContext(AppContext);
   const [searchInput, setSearchInput] = useState(localStorage.getItem('searchValue') || '');
 
   useEffect(() => {
@@ -18,9 +19,28 @@ export const Search = ({ onClick }: SearchProps) => {
     setSearchInput(newValue);
   };
 
-  const handleSubmit = (e: React.FormEvent<EventTarget>) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    onClick(searchInput);
+
+    try {
+      dispatch(getPersonsStarted());
+
+      const response = await api.getPersons(searchInput);
+
+      dispatch(getPersonsSuccess(response));
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log('error message: ', error.message);
+        // 👇️ error: AxiosError<any, any>
+        // return error.message;
+        console.log(error.response?.data);
+        const errorMessage = error.response?.data;
+        dispatch(getPersonsFailure(errorMessage as ErrorType));
+      } else {
+        console.log('unexpected error: ', error);
+        return 'An unexpected error occurred';
+      }
+    }
   };
 
   return (

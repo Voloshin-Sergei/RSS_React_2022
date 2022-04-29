@@ -1,14 +1,23 @@
-import React, { createContext } from 'react';
-import { Person } from './../types';
+import React, { createContext, Dispatch } from 'react';
+import { Person, ErrorType } from './../types';
+import { AppActionTypes } from './types';
 
 export interface InitialStateType {
   persons: Person[];
-  isLoaded: boolean;
+  isLoading: boolean;
+  error: null | ErrorType;
 }
 
-export const initialState = {
+export const initialState: InitialStateType = {
   persons: [],
-  isLoaded: false,
+  isLoading: false,
+  error: null,
 };
 
-export const AppContext = createContext<InitialStateType>(initialState);
+export const AppContext = createContext<{
+  state: InitialStateType;
+  dispatch: Dispatch<AppActionTypes>;
+}>({
+  state: initialState,
+  dispatch: () => undefined,
+});

@@ -16,17 +16,17 @@ describe('Search', () => {
   const testOnclick = jest.fn();
 
   it('Search snapshot', () => {
-    const searchComponent = render(<Search onClick={testOnclick} />);
+    const searchComponent = render(<Search />);
     expect(searchComponent).toMatchSnapshot();
   });
 
   it('render input element', () => {
-    render(<Search onClick={testOnclick} />);
+    render(<Search />);
     expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
   });
 
   it('input element focus', () => {
-    render(<Search onClick={testOnclick} />);
+    render(<Search />);
     const input = screen.getByRole('textbox');
     expect(input).not.toHaveFocus();
     input.focus();
@@ -34,7 +34,7 @@ describe('Search', () => {
   });
 
   it('value input element may be changed', () => {
-    render(<Search onClick={testOnclick} />);
+    render(<Search />);
     fireEvent.change(screen.getByPlaceholderText(/search/i), {
       target: { value: 'test value' },
     });
@@ -42,7 +42,7 @@ describe('Search', () => {
   });
 
   it('render button element', () => {
-    render(<Search onClick={testOnclick} />);
+    render(<Search />);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('button'));
@@ -50,7 +50,7 @@ describe('Search', () => {
   });
 
   it('Should call localStorage getItem on render', () => {
-    render(<Search onClick={testOnclick} />);
+    render(<Search />);
     expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
   });
 });

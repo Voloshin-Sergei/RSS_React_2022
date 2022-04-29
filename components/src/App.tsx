@@ -7,7 +7,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { UsersPage } from './pages/UsersPage';
 import { PersonPage } from './pages/PersonPage';
 import { appReducer } from './store/reducer';
-import { initialState, AppContext } from './store/state';
+import { initialState, AppContext, InitialStateType } from './store/state';
 
 import './App.module.scss';
 

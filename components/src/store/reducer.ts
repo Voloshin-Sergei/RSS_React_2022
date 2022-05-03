@@ -22,6 +22,15 @@ export const appReducer = (state: InitialStateType, action: AppActionTypes): Ini
         isLoading: action.payload.isLoading,
       };
 
+    case Actions.SET_GENDER_FILTER:
+      // console.log(action);
+      const filter = action.payload.filter;
+      const value = action.payload.value;
+      return {
+        ...state,
+        [filter]: value,
+      };
+
     default:
       return state;
   }

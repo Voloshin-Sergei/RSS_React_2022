@@ -4,6 +4,7 @@ export enum Actions {
   GET_PERSONS_STARTED = 'GET_PERSONS_STARTED',
   GET_PERSONS_SUCCESS = 'GET_PERSONS_SUCCESS',
   GET_PERSONS_FAILURE = 'GET_PERSONS_FAILURE',
+  SET_GENDER_FILTER = 'SET_GENDER_FILTER',
 }
 
 export interface GetPersonsStarted {
@@ -21,4 +22,13 @@ export interface GetPersonsFailure {
   payload: { error: null | ErrorType; isLoading: boolean };
 }
 
-export type AppActionTypes = GetPersonsStarted | GetPersonsSuccess | GetPersonsFailure;
+export interface SetGenderFilter {
+  type: Actions.SET_GENDER_FILTER;
+  payload: { filter: string; value: string };
+}
+
+export type AppActionTypes =
+  | GetPersonsStarted
+  | GetPersonsSuccess
+  | GetPersonsFailure
+  | SetGenderFilter;

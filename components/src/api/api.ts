@@ -8,10 +8,11 @@ export const api = {
     return response.data;
   },
 
-  getPersons: async (name: string) => {
+  getPersons: async (name: string, gender: string) => {
     const response = await request.get('/character', {
       params: {
         name: name,
+        gender: gender,
       },
     });
     return response.data;
